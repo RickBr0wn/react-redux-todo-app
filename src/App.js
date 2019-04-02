@@ -1,40 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Todos from './Todos'
 import AddTodo from './AddTodo'
+import { connect } from 'react-redux'
+import { addTodo } from './Store/actions'
 
-class App extends Component {
-  state = {
-    todos: [
-      {id: 1, content: 'buy some milk'},
-      {id: 2, content: 'play mario cart'}
-    ]
-  }
+function App({ todos, onAddTodo }) {
+  return (
+    <div className='todo-app container'>
+      <h1 className='title'>TODOS</h1>
+      <hr />
+      <p className='remaining'>{`You currently have ${
+        todos.length
+      } todos left to complete.`}</p>
+      <hr />
+      <AddTodo addTodo={onAddTodo} />
+      <Todos todos={todos} />
+    </div>
+  )
+}
 
-  deleteTodo = id => {
-    const todos = this.state.todos.filter(todo => todo.id !== id)
-    this.setState({
-      todos
-    })
-  }
-
-  addTodoToState = todo => {
-    todo.id = Math.random()
-    let todos = [...this.state.todos, todo]
-    this.setState({
-      todos
-    })
-  }
-
-  render() {
-    return (
-      <div className="todo-app container">
-        <h1 className="center blue-text">My ToDo List</h1>
-        <Todos  todos={this.state.todos}
-                deleteTodo={this.deleteTodo} />
-        <AddTodo addTodoToState={this.addTodoToState} />
-      </div>
-    )
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
   }
 }
 
-export default App
+const mapDispatchToProps = {
+  onAddTodo: addTodo
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

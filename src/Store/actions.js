@@ -1,9 +1,9 @@
-import v4 from 'node-uuid'
+import UUID from './uuidGen'
 
 export const addTodo = function(newTodo) {
   return {
     type: 'ADD',
-    id: v4(),
+    id: UUID(),
     title: newTodo
   }
 }

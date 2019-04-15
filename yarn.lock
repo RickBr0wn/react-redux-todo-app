@@ -7959,6 +7959,11 @@ react-scripts@2.0.3:
   optionalDependencies:
     fsevents "1.2.4"
 
+react-uuid@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-uuid/-/react-uuid-0.0.1.tgz#ecc20b7d0f678b6b96ff1e85de3f29d4f8a97789"
+  integrity sha512-lTXebIxdhrG7FRCE0pDn9rGwPyO+7mG81g+z96iISWdeMrcgI/bLT9zzRLyOBcIez2A5JZK3VIHg3xLthHk44g==
+
 react@^16.5.2:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"

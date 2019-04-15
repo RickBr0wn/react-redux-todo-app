@@ -27,6 +27,7 @@ body {
 .todo-app {
   background: #eee;
   max-width: 90rem;
+  max-height: 90rem;
   margin: 0 auto;
   position: absolute;
   top: 45%;
@@ -52,4 +53,11 @@ body {
 
 hr {
   margin-top: 2px;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.2rem;
 }

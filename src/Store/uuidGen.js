@@ -3,7 +3,7 @@ A function that returns a universally unique identifier (uuid).
 example: 1b83fd69-abe7-468c-bea1-306a8aa1c81d
 @returns `string` : 32 character uuid (see example)
 */
-function uuidGen() {
+export default function UUID() {
   const randomCharacter = function() {
     const hashTable = [
       'a',

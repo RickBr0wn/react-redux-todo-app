@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 
+const styles = {
+  container: {
+    padding: '1rem'
+  }
+}
+
 function AddTodo({ addTodo }) {
   const [newTodo, setNewTodo] = useState('')
   return (
@@ -8,7 +14,8 @@ function AddTodo({ addTodo }) {
         onSubmit={e => {
           e.preventDefault()
           addTodo(newTodo)
-        }}>
+        }}
+        style={styles.container}>
         <label>Add new todo item:</label>
         <input
           type='text'

@@ -1,31 +1,40 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import Todos from './Todos'
 import AddTodo from './AddTodo'
 import { connect } from 'react-redux'
 import { addTodo } from './Store/actions'
 import UUID from './Store/uuidGen'
+import MainGrid from './Components/MainGrid'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import theme from './Components/Theme'
+import Hero from './Components/Hero'
 
 function App({ todos, onAddTodo }) {
-  console.log(UUID())
   return (
-    <div className='todo-app'>
-      <h1 className='title'>TODOS</h1>
+    <MuiThemeProvider theme={theme}>
+      <Hero />
+      <MainGrid addTodo={addTodo} />
+      {/* <h1>TODOS</h1>
       <hr />
-      <p className='remaining'>{`You currently have ${
-        todos.length
-      } todos left to complete.`}</p>
+      <p>{`You currently have ${todos.length} todos left to complete.`}</p>
       <hr />
-      <div className='filter-container'>
+      <div>
         <p>ALL</p>
         <p>COMPLETED</p>
         <p>ACTIVE</p>
       </div>
       <hr />
       <AddTodo addTodo={onAddTodo} />
-      <Todos todos={todos} />
-    </div>
+      <Todos todos={todos} /> */}
+    </MuiThemeProvider>
   )
 }
+
+// Photo by MontyLov on Unsplash
 
 const mapStateToProps = state => {
   return {

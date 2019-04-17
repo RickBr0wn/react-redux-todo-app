@@ -1,32 +1,45 @@
 import React, { useState } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 
-const styles = {
-  container: {
-    padding: '1rem'
+const styles = theme => ({
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary
+  },
+  input: {
+    border: 'none',
+    borderBottom: `1px solid ${theme.palette.text.secondary}`
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'coloumn'
   }
-}
+})
 
-function AddTodo({ addTodo }) {
+function AddTodo({ addTodo, classes }) {
   const [newTodo, setNewTodo] = useState('')
   return (
-    <div>
+    <Paper className={classes.paper}>
       <form
+        className={classes.form}
         onSubmit={e => {
           e.preventDefault()
           addTodo(newTodo)
-        }}
-        style={styles.container}>
-        <label>Add new todo item:</label>
+        }}>
+        <label>Add new todo item: </label>
         <input
           type='text'
           id='content'
           onChange={e => setNewTodo(e.target.value)}
           value={newTodo}
+          className={classes.input}
         />
         <button type='submit'>SUBMIT</button>
       </form>
-    </div>
+    </Paper>
   )
 }
 
-export default AddTodo
+export default withStyles(styles)(AddTodo)

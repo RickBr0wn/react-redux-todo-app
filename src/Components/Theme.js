@@ -5,5 +5,8 @@ export default createMuiTheme({
   pallette: {
     primary: pink,
     secondary: indigo
+  },
+  typography: {
+    useNextVariants: true
   }
 })

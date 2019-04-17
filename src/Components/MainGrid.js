@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import AddTodo from '../AddTodo'
+import AddTodo from './AddTodo'
+import Todos from './Todos'
 
 const styles = theme => ({
   root: {
@@ -16,20 +17,23 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    display: 'flex',
+    justifyContent: 'center',
+    color: theme.palette.text.secondary
   }
 })
 
-const MainGrid = ({ classes, addTodo }) => {
+const MainGrid = ({ classes, addTodo, todos }) => {
   return (
     <Grid container spacing={24} className={classes.container}>
-      <Grid item xs={12}>
-        <AddTodo addTodo={addTodo} />
-      </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>xs=6</Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>xs=6</Paper>
+      <Grid item xs={12} lg={4}>
+        <Paper center className={classes.paper}>
+          <AddTodo addTodo={addTodo} />
+          <Todos todos={todos} />
+        </Paper>
       </Grid>
     </Grid>
   )

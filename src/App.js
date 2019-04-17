@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import Todos from './Todos'
-import AddTodo from './AddTodo'
 import { connect } from 'react-redux'
 import { addTodo } from './Store/actions'
 import UUID from './Store/uuidGen'
@@ -17,19 +15,7 @@ function App({ todos, onAddTodo }) {
   return (
     <MuiThemeProvider theme={theme}>
       <Hero />
-      <MainGrid addTodo={addTodo} />
-      {/* <h1>TODOS</h1>
-      <hr />
-      <p>{`You currently have ${todos.length} todos left to complete.`}</p>
-      <hr />
-      <div>
-        <p>ALL</p>
-        <p>COMPLETED</p>
-        <p>ACTIVE</p>
-      </div>
-      <hr />
-      <AddTodo addTodo={onAddTodo} />
-      <Todos todos={todos} /> */}
+      <MainGrid addTodo={onAddTodo} todos={todos} />
     </MuiThemeProvider>
   )
 }

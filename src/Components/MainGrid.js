@@ -8,6 +8,7 @@ import TodoEntry from './TodoEntry'
 import TodoItem from './TodoItem'
 import AddIcon from '@material-ui/icons/Add'
 import { addTodo, deleteTodo } from '../Store/actions'
+import Title from './Title'
 
 const styles = theme => ({
   root: {
@@ -36,8 +37,6 @@ const styles = theme => ({
   }
 })
 
-const Title = () => <h1>Todo App</h1>
-
 const MainGrid = ({ classes, onAddTodo, todos, onDeleteTodo }) => {
   const [toggle, setToggle] = useState(false)
   return (
@@ -51,7 +50,7 @@ const MainGrid = ({ classes, onAddTodo, todos, onDeleteTodo }) => {
               setToggle={setToggle}
             />
           ) : (
-            <Title />
+            <Title todos={todos} />
           )}
           <TodoItem todos={todos} deleteTodo={onDeleteTodo} />
           {toggle ? null : (

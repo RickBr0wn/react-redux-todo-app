@@ -7,3 +7,10 @@ export const addTodo = function(newTodo) {
     title: newTodo
   }
 }
+
+export const deleteTodo = function(id) {
+  return {
+    type: 'DELETE',
+    id
+  }
+}

@@ -5,8 +5,11 @@ export default function(state = [], { type, id, title }) {
     case 'ADD':
       return {
         ...state,
-        todos: [...state.todos, { id, title }]
+        todos: [...state.todos, { id, title, completed: false }]
       }
+    case 'DELETE':
+      const todos = state.todos.filter(item => item.id !== id)
+      return { ...state, todos }
     default:
       return state
   }

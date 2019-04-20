@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { TextField, Button } from '@material-ui/core'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   form: {
@@ -23,7 +24,7 @@ const styles = theme => ({
   }
 })
 
-function AddTodo({ addTodo, classes, toggle, setToggle }) {
+const TodoEntry = ({ addTodo, classes, toggle, setToggle }) => {
   const [newTodo, setNewTodo] = useState('')
   return (
     <form
@@ -68,4 +69,11 @@ function AddTodo({ addTodo, classes, toggle, setToggle }) {
   )
 }
 
-export default withStyles(styles)(AddTodo)
+TodoEntry.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  toggle: PropTypes.bool.isRequired,
+  setToggle: PropTypes.func.isRequired
+}
+
+export default withStyles(styles)(TodoEntry)

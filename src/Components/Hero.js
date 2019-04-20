@@ -1,7 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import hero from '../Images/hero.jpg'
-import { relative } from 'path'
 
 const styles = theme => ({
   background: { background: '#000', position: 'relative' },

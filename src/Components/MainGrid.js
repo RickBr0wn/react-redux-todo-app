@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import { Paper, Grid, Fab } from '@material-ui/core'
-import AddTodo from './AddTodo'
-import Todos from './Todos'
+import TodoEntry from './TodoEntry'
+import TodoItem from './TodoItem'
 import AddIcon from '@material-ui/icons/Add'
+import { addTodo, deleteTodo } from '../Store/actions'
+import Title from './Title'
 
 const styles = theme => ({
   root: {
@@ -33,20 +37,22 @@ const styles = theme => ({
   }
 })
 
-const Title = () => <h1>Todo App</h1>
-
-const MainGrid = ({ classes, addTodo, todos }) => {
+const MainGrid = ({ classes, onAddTodo, todos, onDeleteTodo }) => {
   const [toggle, setToggle] = useState(false)
   return (
     <Grid container spacing={24} className={classes.container}>
       <Grid item xs={12} lg={4}>
         <Paper className={classes.paper}>
           {toggle ? (
-            <AddTodo addTodo={addTodo} toggle={toggle} setToggle={setToggle} />
+            <TodoEntry
+              addTodo={onAddTodo}
+              toggle={toggle}
+              setToggle={setToggle}
+            />
           ) : (
-            <Title />
+            <Title todos={todos} />
           )}
-          <Todos todos={todos} />
+          <TodoItem todos={todos} deleteTodo={onDeleteTodo} />
           {toggle ? null : (
             <Fab
               color='primary'
@@ -63,7 +69,25 @@ const MainGrid = ({ classes, addTodo, todos }) => {
 }
 
 MainGrid.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  onAddTodo: PropTypes.func.isRequired,
+  todos: PropTypes.array.isRequired,
+  onDeleteTodo: PropTypes.func.isRequired
 }
 
-export default withStyles(styles)(MainGrid)
+const mapStateToProps = state => ({
+  todos: state.todos
+})
+
+const mapDispatchToProps = {
+  onAddTodo: addTodo,
+  onDeleteTodo: deleteTodo
+}
+
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(MainGrid)
